@@ -1,4 +1,4 @@
-package org.garpesa;
+package org.garpesa.services;
 
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Test;

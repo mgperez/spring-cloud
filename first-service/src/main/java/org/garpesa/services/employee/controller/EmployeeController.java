@@ -33,6 +33,7 @@ public class EmployeeController {
     @Path("/message")
     @Produces(MediaType.TEXT_PLAIN)
     public String test() {
+        LOGGER.info("Hello JavaInUse Called in First Service");
 		return "Hello JavaInUse Called in First Service";
 	}
     

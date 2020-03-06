@@ -1,4 +1,4 @@
-package org.garpesa;
+package org.garpesa.services;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

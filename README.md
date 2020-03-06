@@ -166,7 +166,7 @@ Selected dependencies
 Run the project:
 
 ```
-./mvnw package
+./mvnw package -DskipTests
 java -jar target/cloud-gateway-service-0.0.1-SNAPSHOT.jar
 ```
 
