@@ -54,9 +54,15 @@ https://quarkus.io/blog/quarkus-for-spring-developers/
 
 
 
-Maven
+Git
 
-**~/.gitc buenoonfig**
+https://www.3pillarglobal.com/insights/tutorial-how-to-manage-git-branches-using-gitflow
+
+
+
+**~/.gitconfig**
+
+Maven
 
 https://blog.softwaremill.com/graalvm-installation-and-setup-on-macos-294dd1d23ca2
 
