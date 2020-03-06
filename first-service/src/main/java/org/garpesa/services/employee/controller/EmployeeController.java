@@ -1,4 +1,4 @@
-package com.garpesa.services.employee.controller;
+package org.garpesa.services.employee.controller;
 
 import java.util.Set;
 
@@ -15,8 +15,8 @@ import javax.ws.rs.core.MediaType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.garpesa.services.employee.entity.Employee;
-import com.garpesa.services.employee.repository.EmployeeRepository;
+import org.garpesa.services.employee.entity.Employee;
+import org.garpesa.services.employee.repository.EmployeeRepository;
 
 
 @Path("/employees")

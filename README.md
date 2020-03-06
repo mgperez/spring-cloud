@@ -1,10 +1,30 @@
-Implement First Microservice
+Tutorial
 
 https://www.youtube.com/watch?v=dZ8Z5DpcdrM
 
+https://www.youtube.com/watch?v=Aty83SQD8O4
+
+
+
 https://www.javainuse.com/spring/cloud-gateway
 
+https://github.com/TechPrimers/spring-cloud-eureka-and-hystrix-example
+
+
+
+**Spring**
+
 https://github.com/spring-guides/gs-gateway
+
+https://spring.io/guides/gs/gateway/
+
+
+
+**Netflix**
+
+https://github.com/Netflix/zuul/wiki
+
+https://github.com/Netflix/zuul/wiki/Getting-Started-2.0
 
 
 
@@ -34,6 +54,20 @@ https://quarkus.io/blog/quarkus-for-spring-developers/
 
 
 
+Maven
+
+**~/.gitc buenoonfig**
+
+https://blog.softwaremill.com/graalvm-installation-and-setup-on-macos-294dd1d23ca2
+
+Cannot find the `native-image` in the GRAALVM_HOME, JAVA_HOME and System PATH. Install it using `gu install native-image`
+
+https://www.graalvm.org/docs/reference-manual/native-image/#graalvm-native-image
+
+https://www.graalvm.org/docs/reference-manual/install-components/
+
+~/.bash_profile
+
 how to secure it
 
 https://developer.okta.com/blog/2019/09/30/java-quarkus-oidc
@@ -47,6 +81,8 @@ https://www.baeldung.com/java-json-binding-api
 https://developer.ibm.com/technologies/java/articles/j-javaee8-json-binding-4/
 
 
+
+**Implement First Microservice** 
 
 This command generates a Maven structure importing the extensions:
 
@@ -62,15 +98,22 @@ mvn io.quarkus:quarkus-maven-plugin:1.2.1.Final:create \
     -Dextensions="resteasy-jsonb, hibernate-validator"
 ```
 
-Run the project:
+tar -xvf first-service.zip
+
+Run the project: (runs Quarkus in development mode.)
 
 ```
-./mvnw compile quarkus:dev
+./mvnw compile quarkus:dev -Ddebug=false
+./mvnw clean package -Pnative
+./mvnw clean package
+java -jar target/first-service-1.0.0-SNAPSHOT-runner.jar
 ```
 
 Now, if run the application employee-service locally in development mode by executing Maven command:
 
  mvn compile quarkus:dev 
+
+http://localhost:8080/hello
 
 
 
@@ -86,21 +129,52 @@ Now, you *curl* `http://localhost:8080/openapi` endpoint:
 
 unset HTTP_PROXY
 
-curl -X GET "http://localhost:8080/employees/message"
+curl -X GET "http://localhost:8081/employees/message"
 
 
 
 
 
-Implement Second Microservice
+**Implement Second Microservice**
 
 ```
 mvn io.quarkus:quarkus-maven-plugin:1.2.1.Final:create \
-    -DprojectGroupId=com.garpesa.services \
+    -DprojectGroupId=org.garpesa.services \
     -DprojectArtifactId=second-service \
-    -DclassName="com.garpesa.services.consumer.controller.ConsumerController" \
+    -DclassName="org.garpesa.services.consumer.controller.ConsumerController" \
     -Dpath="/consumers" \
     -Dextensions="resteasy-jsonb, hibernate-validator"
 ```
 
 curl -X GET "http://localhost:8082/consumers/message"
+
+
+
+**Implement Spring Cloud Gateway**
+
+https://start.spring.io/
+
+https://spring.io/guides/gs/maven/
+
+To run your own gateway use the `spring-cloud-starter-gateway` dependency.
+
+Selected dependencies
+
+- [**Gateway**
+  Provides a simple, yet effective way to route to APIs and provide cross cutting concerns to them such as security, monitoring/metrics, and resiliency.](https://start.spring.io/)
+
+Run the project:
+
+```
+./mvnw package
+java -jar target/cloud-gateway-service-0.0.1-SNAPSHOT.jar
+```
+
+```bash
+$ curl http://localhost:8080/get
+```
+
+https://spring.io/guides/gs/gateway/
+
+https://www.javainuse.com/spring/cloud-gateway
+

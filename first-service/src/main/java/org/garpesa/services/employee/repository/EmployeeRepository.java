@@ -1,4 +1,4 @@
-package com.garpesa.services.employee.repository;
+package org.garpesa.services.employee.repository;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 import javax.enterprise.context.ApplicationScoped;
 
-import com.garpesa.services.employee.entity.Employee;
+import org.garpesa.services.employee.entity.Employee;
 
 @ApplicationScoped
 public class EmployeeRepository {

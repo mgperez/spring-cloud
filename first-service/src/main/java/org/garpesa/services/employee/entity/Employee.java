@@ -1,4 +1,4 @@
-package com.garpesa.services.employee.entity;
+package org.garpesa.services.employee.entity;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
