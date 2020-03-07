@@ -12,6 +12,16 @@ https://github.com/TechPrimers/spring-cloud-eureka-and-hystrix-example
 
 
 
+OAuth 2 + Json Web Tokens
+
+https://medium.com/@yellow/rest-security-basics-f59013850c4e
+
+https://quarkus.io/guides/security
+
+https://blog.jdriven.com/2019/11/spring-cloud-gateway-with-openid-connect-and-token-relay/
+
+
+
 **Spring**
 
 https://github.com/spring-guides/gs-gateway
@@ -51,6 +61,8 @@ https://quarkus.io/quarkus-workshops/super-heroes/
 
 
 https://quarkus.io/blog/quarkus-for-spring-developers/
+
+https://www.javacodegeeks.com/2020/02/getting-started-with-quarkus.html
 
 
 
