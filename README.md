@@ -18,9 +18,17 @@ https://medium.com/@yellow/rest-security-basics-f59013850c4e
 
 https://quarkus.io/guides/security
 
+Spring Cloud Gateway with OpenID Connect and Token Relay
+
 https://blog.jdriven.com/2019/11/spring-cloud-gateway-with-openid-connect-and-token-relay/
 
+https://picodotdev.github.io/blog-bitix/2019/02/servidor-oauth-gateway-y-servicio-rest-utilizando-tokens-jwt-con-spring/
 
+https://www.baeldung.com/spring-security-zuul-oauth-jwt
+
+https://www.xoriant.com/blog/product-engineering/microservices-security-using-jwt-authentication-gateway.html
+
+https://spring.io/blog/2019/08/16/securing-services-with-spring-cloud-gateway
 
 **Spring**
 
