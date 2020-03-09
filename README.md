@@ -22,6 +22,10 @@ Spring Cloud Gateway with OpenID Connect and Token Relay
 
 https://blog.jdriven.com/2019/11/spring-cloud-gateway-with-openid-connect-and-token-relay/
 
+https://github.com/timtebeek/spring-security-samples
+
+
+
 https://picodotdev.github.io/blog-bitix/2019/02/servidor-oauth-gateway-y-servicio-rest-utilizando-tokens-jwt-con-spring/
 
 https://www.baeldung.com/spring-security-zuul-oauth-jwt
@@ -29,6 +33,52 @@ https://www.baeldung.com/spring-security-zuul-oauth-jwt
 https://www.xoriant.com/blog/product-engineering/microservices-security-using-jwt-authentication-gateway.html
 
 https://spring.io/blog/2019/08/16/securing-services-with-spring-cloud-gateway
+
+https://howtodoinjava.com/spring-cloud/spring-cloud-api-gateway-zuul/
+
+
+
+Spring Cloud Gateway Tutorial
+
+https://medium.com/@niral22/spring-cloud-gateway-tutorial-5311ddd59816
+
+https://www.baeldung.com/spring-cloud-custom-gateway-filters
+
+https://programmer.help/blogs/second-generation-microservice-gateway-component-spring-cloud-gateway.html
+
+Secure Spring Cloud Gateway with OAuth 2.0
+
+https://morioh.com/p/0f35d4bf423b
+
+
+
+Sentinel: Supports Spring Cloud Gateway
+
+https://www.javaspring.net/sentinel/sentinel-supports-spring-cloud-gateway
+
+
+
+Implementing an On-Premises Identity Management Solution?
+
+Okta (identity management) -- cloud identity provider
+
+https://developer.okta.com/blog/2020/01/08/secure-legacy-spring-cloud-gateway
+
+https://morioh.com/p/0f35d4bf423b
+
+You can use OAuth 2.0 and OIDC (OpenID Connect) without a cloud identity provider by building your own server or by using an open-source implementation. 
+
+
+
+https://www.keycloak.org/ (Open Source Identity and Access Management)
+
+
+
+Make Your Gateway an OAuth 2.0 Resource Server
+
+https://morioh.com/p/0f35d4bf423b
+
+
 
 **Spring**
 
