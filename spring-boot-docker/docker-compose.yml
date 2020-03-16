@@ -5,8 +5,8 @@ services:
         restart: unless-stopped
         container_name: gateway
         build:
-            context: .
-            dockerfile: Dockerfile.gateway
+            context: ../cloud-gateway-service
+            dockerfile: src/main/docker/Dockerfile.gateway
         image: cloud-gateway-service:latest
         ports: ['8888:8888']
         networks:
