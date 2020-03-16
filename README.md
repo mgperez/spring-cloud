@@ -12,6 +12,36 @@ https://github.com/TechPrimers/spring-cloud-eureka-and-hystrix-example
 
 
 
+My experiences with API gateways…
+
+https://medium.com/@mahesh.mahadevan/my-experiences-with-api-gateways-8a93ad17c4c4
+
+https://medium.com/devops-faith/an-api-gateway-is-not-the-new-unicorn-303a3863f2a6
+
+
+
+https://www.krakend.io/
+
+https://github.com/solo-io/gloo
+
+https://www.nginx.com/
+
+https://konghq.com/
+
+https://tyk.io/
+
+https://www.getambassador.io/
+
+https://docs.apigee.com/
+
+https://wso2.com/
+
+https://github.com/Netflix/zuul
+
+
+
+
+
 OAuth 2 + Json Web Tokens
 
 https://medium.com/@yellow/rest-security-basics-f59013850c4e

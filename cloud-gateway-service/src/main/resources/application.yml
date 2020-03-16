@@ -28,9 +28,9 @@ spring:
           predicates:
             - Path=/consumers/**
         - id: flights-service
-            uri: http://127.0.0.1:8081/flights
-            predicates:
-              - Path=/flights/**
+          uri: http://127.0.0.1:8081/flights
+          predicates:
+            - Path=/flights/**
         - id: hotels-service
           uri: http://127.0.0.1:8082/hotels
           predicates:
