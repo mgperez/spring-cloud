@@ -15,7 +15,7 @@ public class CloudGatewayServiceApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CloudGatewayServiceApplication.class, args);
 	}
-
+	/*
 	@Bean
 	public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http,
 															ReactiveClientRegistrationRepository clientRegistrationRepository) {
@@ -36,4 +36,6 @@ public class CloudGatewayServiceApplication {
 		http.csrf().disable();
 		return http.build();
 	}
+
+	 */
 }

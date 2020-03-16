@@ -16,8 +16,8 @@ spring:
 
   cloud:
     gateway:
-      default-filters:
-        - TokenRelay
+#      default-filters:
+#        - TokenRelay
       routes:
         - id: employeeModule-ms1
           uri: http://localhost:8081/
