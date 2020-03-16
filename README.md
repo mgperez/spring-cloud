@@ -211,9 +211,31 @@ Run the project: (runs Quarkus in development mode.)
 ```
 ./mvnw compile quarkus:dev -Ddebug=false
 ./mvnw clean package -Pnative
-./mvnw clean package
+./mvnw clean package -DskipTests
 java -jar target/first-service-1.0.0-SNAPSHOT-runner.jar
 ```
+
+Containerization
+
+https://github.com/lreimer/hands-on-quarkus
+
+```
+./mvnw clean package -DskipTests
+docker build -f src/main/docker/Dockerfile.jvm -t mgperez/first-service:jvm .
+docker run -i --rm -p 8081:8081 mgperez/first-service:jvm
+```
+
+Native:
+
+```
+mvn package -Pnative -Dnative-image.docker-build=true
+docker-compose up --build
+
+docker build -f src/main/docker/Dockerfile.native -t lreimer/hands-on-quarkus:native .
+docker run -i --rm -p 8080:8080 lreimer/hands-on-quarkus:native
+```
+
+
 
 Now, if run the application employee-service locally in development mode by executing Maven command:
 
@@ -235,9 +257,11 @@ Now, you *curl* `http://localhost:8080/openapi` endpoint:
 
 unset HTTP_PROXY
 
+```
 curl -X GET "http://localhost:8081/employees/message"
 
-
+curl -X GET "http://localhost:8081/health"
+```
 
 
 
@@ -252,9 +276,10 @@ mvn io.quarkus:quarkus-maven-plugin:1.2.1.Final:create \
     -Dextensions="resteasy-jsonb, hibernate-validator"
 ```
 
+```
 curl -X GET "http://localhost:8082/consumers/message"
-
-
+curl -X GET "http://localhost:8082/health"
+```
 
 **Implement Spring Cloud Gateway**
 
@@ -273,14 +298,21 @@ Run the project:
 
 ```
 ./mvnw package -DskipTests
+./mvnw package spring-boot:repackage -DskipTests
 java -jar target/cloud-gateway-service-0.0.1-SNAPSHOT.jar
 ```
 
 ```bash
 $ curl http://localhost:8080/get
+$ curl -f http://localhost:8888/actuator/health
 ```
 
 https://spring.io/guides/gs/gateway/
 
 https://www.javainuse.com/spring/cloud-gateway
 
+
+
+#### docker-compose-healthcheck
+
+https://github.com/peter-evans/docker-compose-healthcheck/blob/master/docker-compose.yml

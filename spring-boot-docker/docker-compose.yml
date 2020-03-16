@@ -1,42 +1,83 @@
-version: '2'
+version: '2.3'
+
 services:
-    config-server:
-        container_name: config-server
-#        build:
-#            context: .
-#            dockerfile: Dockerfile.server
-        image: config-server:latest
-        expose:
-            - 8888
+    gateway:
+        restart: unless-stopped
+        container_name: gateway
+        build:
+            context: .
+            dockerfile: Dockerfile.gateway
+        image: cloud-gateway-service:latest
+        ports: ['8888:8888']
         networks:
-            - spring-cloud-network
+            - quarkus
+        links:
+            - login-mock:login-mock
+            - first-service:first-service
+            - second-service:second-service
+        depends_on:
+            first-service:
+                condition: service_healthy
+            second-service:
+                condition: service_healthy
+        environment:
+            - LOGIN_HOST=login-mock
+            - MS1_HOST=first-service
+            - MS2_HOST=second-service
         volumes:
             - spring-cloud-config-repo:/var/lib/spring-cloud/config-repo
-        logging:
-            driver: json-file
-    config-client:
-        container_name: config-client
- #       build:
- #           context: .
- #           dockerfile: Dockerfile.client
-        image: config-client:latest
-        entrypoint: /opt/spring-cloud/bin/config-client-entrypoint.sh
-        environment:
-            SPRING_APPLICATION_JSON: '{"spring": {"cloud": {"config": {"uri": "http://config-server:8888"}}}}'
-        expose:
-            - 8080
-        ports:
-            - 8080:8080
+        healthcheck:
+            test: ["CMD-SHELL", "curl -f http://127.0.0.1:8888/actuator/health || exit 1"]
+            interval: 10s
+            timeout: 1s
+            retries: 66
+    login-mock:
+        restart: unless-stopped
+        container_name: login-mock
+        image: smartgates/login-mock:latest
+#        healthcheck:
+#            test: ["CMD-SHELL", "curl -f http://127.0.0.1:8080/health || exit 1"]
+#            interval: 10s
+#            timeout: 1s
+#            retries: 66
+        ports: ['8080:8080'] # the HTTP endpoint
         networks:
-            - spring-cloud-network
-        links:
-            - config-server:config-server
-        depends_on:
-            - config-server
-        logging:
-            driver: json-file
+            - quarkus
+
+    first-service:
+        restart: unless-stopped
+        container_name: first-service
+        image: mgperez/first-service:jvm
+        build:
+            context: ../first-service
+            dockerfile: src/main/docker/Dockerfile.jvm
+        healthcheck:
+            test: ["CMD-SHELL", "curl -f http://127.0.0.1:8081/health || exit 1"]
+            interval: 10s
+            timeout: 1s
+            retries: 66
+        ports: ['8081:8081'] # the HTTP endpoint
+        networks:
+            - quarkus
+
+    second-service:
+        restart: unless-stopped
+        container_name: second-service
+        image: mgperez/second-service:jvm
+        build:
+            context: ../second-service
+            dockerfile: src/main/docker/Dockerfile.jvm
+        healthcheck:
+            test: ["CMD-SHELL", "curl -f http://127.0.0.1:8082/health || exit 1"]
+            interval: 10s
+            timeout: 1s
+            retries: 66
+        ports: ['8082:8082'] # the HTTP endpoint
+        networks:
+            - quarkus
+
 networks:
-    spring-cloud-network:
+    quarkus:
         driver: bridge
 volumes:
     spring-cloud-config-repo:

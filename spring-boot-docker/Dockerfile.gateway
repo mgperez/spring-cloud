@@ -1,0 +1,11 @@
+FROM alpine-java:base
+MAINTAINER mgperez
+RUN apk --no-cache --update add busybox-suid bash curl unzip sudo openssh-client shadow wget
+COPY files/cloud-gateway-service.jar /opt/spring-cloud/lib/
+VOLUME /var/lib/spring-cloud/config-repo
+ENTRYPOINT ["/usr/bin/java"]
+CMD ["-jar", "/opt/spring-cloud/lib/cloud-gateway-service.jar"]
+#HEALTHCHECK --timeout=1s \
+#            --retries=66 \
+#            CMD curl -f http://127.0.0.1:8888/actuator/health || exit 1
+EXPOSE 8888

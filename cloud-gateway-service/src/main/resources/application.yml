@@ -1,42 +1,70 @@
 server:
-  port: 8080
+  port: 8888
 
 spring:
-  security:
-    oauth2:
-      client:
-        provider:
-          keycloak:
-            issuer-uri: http://localhost:8090/auth/realms/spring-cloud-gateway-realm
-            user-name-attribute: preferred_username
-        registration:
-          keycloak:
-            client-id: spring-cloud-gateway-client
-            client-secret: 016c6e1c-9cbe-4ad3-aee1-01ddbb370f32
+#  security:
+#    oauth2:
+#      client:
+#        provider:
+#          keycloak:
+#            issuer-uri: http://localhost:8090/auth/realms/spring-cloud-gateway-realm
+#            user-name-attribute: preferred_username
+#        registration:
+#          keycloak:
+#            client-id: spring-cloud-gateway-client
+#            client-secret: 016c6e1c-9cbe-4ad3-aee1-01ddbb370f32
 
   cloud:
     gateway:
 #      default-filters:
 #        - TokenRelay
       routes:
-        - id: employeeModule-ms1
-          uri: http://localhost:8081/
+        - id: login-ms-1
+          uri: http://${LOGIN_HOST}:8080/
+          predicates:
+            - Path=/login/**
+        - id: employeeModule-ms-2
+          uri: http://${MS1_HOST}:8081/
           predicates:
             - Path=/employees/**
-        - id: consumerModule-ms2
-          uri: http://localhost:8082/
+        - id: consumerModule-ms-3
+          uri: http://${MS2_HOST}:8082/
           predicates:
             - Path=/consumers/**
         - id: flights-service
-          uri: http://127.0.0.1:8081/flights
+          uri: http://127.0.0.1:8083/flights
           predicates:
             - Path=/flights/**
         - id: hotels-service
-          uri: http://127.0.0.1:8082/hotels
+          uri: http://127.0.0.1:8084/hotels
           predicates:
             - Path=/hotels/**
 
+
+---
+spring:
+  profiles:
+    active: actuator
+management:
+  endpoints:
+    jmx:
+      exposure:
+        exclude: '*'
+    web:
+      exposure:
+        include:
+          - health
+  endpoint:
+    health:
+      show-details: WHEN_AUTHORIZED
+    shutdown:
+      enabled: false
+---
+spring:
+  profiles:
+    active: logging
 logging:
   level:
     org.springframework.cloud.gateway: DEBUG
     reactor.netty.http.client: DEBUG
+    org.springframework.jdbc: 'DEBUG'
