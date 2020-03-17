@@ -281,38 +281,7 @@ curl -X GET "http://localhost:8082/consumers/message"
 curl -X GET "http://localhost:8082/health"
 ```
 
-**Implement Spring Cloud Gateway**
 
-https://start.spring.io/
-
-https://spring.io/guides/gs/maven/
-
-To run your own gateway use the `spring-cloud-starter-gateway` dependency.
-
-Selected dependencies
-
-- [**Gateway**
-  Provides a simple, yet effective way to route to APIs and provide cross cutting concerns to them such as security, monitoring/metrics, and resiliency.](https://start.spring.io/)
-
-Run the project:
-
-```
-./mvnw package -DskipTests
-./mvnw package spring-boot:repackage -DskipTests
-java -jar target/cloud-gateway-service-0.0.1-SNAPSHOT.jar
-```
-
-```bash
-$ curl http://localhost:8080/get
-$ curl -f http://localhost:8888/actuator/health
-
-https://hub.docker.com/repository/docker/smartgates/login-mock
-curl -v --user root:toor http://localhost:8888/login/authentication
-```
-
-https://spring.io/guides/gs/gateway/
-
-https://www.javainuse.com/spring/cloud-gateway
 
 
 

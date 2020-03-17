@@ -92,6 +92,8 @@ Use the following command to build a normal JVM image and run it:
 
 ```
 docker build -f src/main/docker/Dockerfile.jvm -t mgperez/first-service:jvm .
+% docker images | grep -i mgperez
+
 docker run -i --rm -p 8080:8080 -d --name first-service mgperez/first-service:jvm
 % docker ps | grep first
 % docker kill first-service

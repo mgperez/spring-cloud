@@ -9,11 +9,23 @@ To finally build the image and store it in the local library, we have to run:
 NOTICE: The –tag option will give the image its name and –rm=true will remove intermediate images after it has been built successfully. The last character in this shell command is a dot, acting as a build-directory argument.
 
 ```
-docker build --tag=alpine-java:base --rm=true .
-$> docker images | grep alpine-java
+docker build --tag=mgperez/alpine-java:base --rm=true .
+% docker images | grep alpine-java
 ```
 
 NOTICE: The –tag option will give the image its name and –rm=true will remove intermediate images after it has been built successfully. The last character in this shell command is a dot, acting as a build-directory argument.
+
+### Docker Hub
+
+https://hub.docker.com/
+
+```
+% docker login
+docker tag mgperez/alpine-java:base mgperez/alpine-java:base
+
+# upload an image
+% docker push mgperez/alpine-java:base
+```
 
 
 

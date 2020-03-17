@@ -1,4 +1,4 @@
-FROM alpine-java:base
+FROM mgperez/alpine-java:base
 MAINTAINER mgperez
 RUN apk --no-cache --update add busybox-suid bash curl unzip sudo openssh-client shadow wget
 COPY target/*.jar /opt/spring-cloud/lib/app.jar
