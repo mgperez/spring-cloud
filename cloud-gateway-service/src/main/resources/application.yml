@@ -18,9 +18,23 @@ spring:
     gateway:
 #      default-filters:
 #        - TokenRelay
+#      globalcors:
+#        corsConfigurations:
+#          '[/**]':
+#            allowedOrigins:
+#              - "http://localhost:5000"
+#              - "http://${LOGIN_HOST}:8080"
+#            allowedOrigins: "*"
+#            allowedMethods:
+#              - "*"
+#            allowed-headers:
+#              - "*"
+#            allow-credentials: true
+#uri: http://${LOGIN_HOST}:8080/
+#uri: http://localhost:8080/
       routes:
         - id: login-ms-1
-          uri: http://${LOGIN_HOST}:8080/
+          uri: http://${LOGIN_HOST}/
           predicates:
             - Path=/login/**
         - id: employeeModule-ms-2
@@ -39,7 +53,11 @@ spring:
           uri: http://127.0.0.1:8084/hotels
           predicates:
             - Path=/hotels/**
-
+        - id: web
+          uri: http://${WEB_HOST}/
+          predicates:
+            - Path=/**
+  
 
 ---
 spring:
@@ -65,6 +83,7 @@ spring:
     active: logging
 logging:
   level:
+    root: INFO
     org.springframework.cloud.gateway: DEBUG
     reactor.netty.http.client: DEBUG
     org.springframework.jdbc: 'DEBUG'

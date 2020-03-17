@@ -3,18 +3,36 @@ package com.garpesa.cloudgatewayservice;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.web.server.ServerHttpSecurity;
+import org.springframework.security.web.server.SecurityWebFilterChain;
+
+
+/*
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.oauth2.client.oidc.web.server.logout.OidcClientInitiatedServerLogoutSuccessHandler;
 import org.springframework.security.oauth2.client.registration.ReactiveClientRegistrationRepository;
 import org.springframework.security.web.server.SecurityWebFilterChain;
 import org.springframework.security.web.server.header.XFrameOptionsServerHttpHeadersWriter;
+*/
 
+/**
+ * https://javarubberduck.com/java/cors-gateway/
+ * https://github.com/eugenp/tutorials/blob/master/spring-5-reactive/src/main/java/com/baeldung/reactive/cors/webfilter/CorsWebFilterApplication.java
+ */
 @SpringBootApplication
 public class CloudGatewayServiceApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CloudGatewayServiceApplication.class, args);
 	}
+
+	@Bean
+	public SecurityWebFilterChain corsWebfilterSpringSecurityFilterChain(ServerHttpSecurity http) {
+		http.csrf().disable();
+		return http.build();
+	}
+
 	/*
 	@Bean
 	public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http,

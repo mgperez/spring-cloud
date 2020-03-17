@@ -4,9 +4,9 @@ services:
     gateway:
         restart: unless-stopped
         container_name: gateway
-        build:
-            context: ../cloud-gateway-service
-            dockerfile: src/main/docker/Dockerfile.gateway
+#        build:
+#            context: ../cloud-gateway-service
+#            dockerfile: src/main/docker/Dockerfile.gateway
         image: cloud-gateway-service:latest
         ports: ['8888:8888']
         networks:
@@ -15,42 +15,32 @@ services:
             - login-mock:login-mock
             - first-service:first-service
             - second-service:second-service
+            - web:web
         depends_on:
             first-service:
                 condition: service_healthy
             second-service:
                 condition: service_healthy
         environment:
-            - LOGIN_HOST=login-mock
+            - LOGIN_HOST=login-mock:8080
             - MS1_HOST=first-service
             - MS2_HOST=second-service
-        volumes:
-            - spring-cloud-config-repo:/var/lib/spring-cloud/config-repo
+            - WEB_HOST=web:5000
+#        volumes:
+#            - spring-cloud-config-repo:/var/lib/spring-cloud/config-repo
         healthcheck:
             test: ["CMD-SHELL", "curl -f http://127.0.0.1:8888/actuator/health || exit 1"]
             interval: 10s
             timeout: 1s
             retries: 66
-    login-mock:
-        restart: unless-stopped
-        container_name: login-mock
-        image: smartgates/login-mock:latest
-#        healthcheck:
-#            test: ["CMD-SHELL", "curl -f http://127.0.0.1:8080/health || exit 1"]
-#            interval: 10s
-#            timeout: 1s
-#            retries: 66
-        ports: ['8080:8080'] # the HTTP endpoint
-        networks:
-            - quarkus
 
     first-service:
         restart: unless-stopped
         container_name: first-service
         image: mgperez/first-service:jvm
-        build:
-            context: ../first-service
-            dockerfile: src/main/docker/Dockerfile.jvm
+#        build:
+#            context: ../first-service
+#            dockerfile: src/main/docker/Dockerfile.jvm
         healthcheck:
             test: ["CMD-SHELL", "curl -f http://127.0.0.1:8081/health || exit 1"]
             interval: 10s
@@ -64,9 +54,9 @@ services:
         restart: unless-stopped
         container_name: second-service
         image: mgperez/second-service:jvm
-        build:
-            context: ../second-service
-            dockerfile: src/main/docker/Dockerfile.jvm
+ #       build:
+ #           context: ../second-service
+ #           dockerfile: src/main/docker/Dockerfile.jvm
         healthcheck:
             test: ["CMD-SHELL", "curl -f http://127.0.0.1:8082/health || exit 1"]
             interval: 10s
@@ -76,9 +66,40 @@ services:
         networks:
             - quarkus
 
+    login-mock:
+        restart: unless-stopped
+        container_name: login-mock
+        image: smartgates/login-mock:latest
+#        build:
+#            context: ../../../JulianToledano/quarkus_login
+#            dockerfile: src/main/docker/Dockerfile.jvm
+#        healthcheck:
+#            test: ["CMD-SHELL", "curl -f http://127.0.0.1:8080/health || exit 1"]
+#            interval: 10s
+#            timeout: 1s
+#            retries: 66
+        ports: ['8080:8080'] # the HTTP endpoint
+        networks:
+            - quarkus
+        
+    web:
+        #    network_mode: host
+        image: smartgates/ibcs-manager
+        container_name: web
+        tty: true # Needed to ensure container doesn't self terminate
+#        build:
+#            context: ./borrame_20200313/operational-registry/mcsegates-operationalreg-front
+#            dockerfile: Dockerfile
+#            args:
+#            - VUE_APP_API_URL=http://gateway:8888/
+        privileged: true
+        ports: ['5000:8080'] # host:container
+        networks:
+            - quarkus
+    
 networks:
     quarkus:
         driver: bridge
-volumes:
-    spring-cloud-config-repo:
-        external: true
+#volumes:
+#    spring-cloud-config-repo:
+#        external: true
