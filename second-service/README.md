@@ -1,4 +1,4 @@
-# second-service project
+# **Implement Second Microservice**
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
@@ -10,8 +10,21 @@ Make sure you have read the prerequisites in https://quarkus.io/guides/getting-s
 
 https://code.quarkus.io/
 
+tar -xvf second-service.zip
+
 - RESTEasy JSON-B:  Java API for JSON Binding (JSR 367: JSON-B API) serialization support for RESTEasy
 - Hibernate Validator: Validate data coming to your REST endpoints
+
+```
+mvn io.quarkus:quarkus-maven-plugin:1.2.1.Final:create \
+    -DprojectGroupId=org.garpesa.services \
+    -DprojectArtifactId=second-service \
+    -DclassName="org.garpesa.services.consumer.controller.ConsumerController" \
+    -Dpath="/consumers" \
+    -Dextensions="resteasy-jsonb, hibernate-validator"
+```
+
+
 
 ### Extensions
 

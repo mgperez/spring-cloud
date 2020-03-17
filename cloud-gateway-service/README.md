@@ -55,7 +55,10 @@ docker build -f src/main/docker/Dockerfile.jvm -t mgperez/gateway:jvm --rm=true 
 
 docker run -i --rm -p 8888:8888 -d --name gateway mgperez/gateway:jvm
 % docker ps | grep mgperez
-% docker kill gateway
+$> docker inspect gateway
+$> docker stop gateway
+$> docker rm gateway
+% docker kill gateway # stop+rm
 ```
 
 ### Docker Hub

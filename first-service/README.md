@@ -1,4 +1,4 @@
-# first-service project
+# Implement First Microservice
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
@@ -9,6 +9,8 @@ If you want to learn more about Quarkus, please visit its website: https://quark
 Make sure you have read the prerequisites in https://quarkus.io/guides/getting-started-guide
 
 https://code.quarkus.io/
+
+tar -xvf first-service.zip
 
 - RESTEasy JSON-B:  Java API for JSON Binding (JSR 367: JSON-B API) serialization support for RESTEasy
 - Hibernate Validator: Validate data coming to your REST endpoints

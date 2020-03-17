@@ -253,33 +253,7 @@ you may view API specification available under URL http://localhost:8080/swagger
 
 Now, you *curl* `http://localhost:8080/openapi` endpoint:
 
-
-
 unset HTTP_PROXY
-
-```
-curl -X GET "http://localhost:8081/employees/message"
-
-curl -X GET "http://localhost:8081/health"
-```
-
-
-
-**Implement Second Microservice**
-
-```
-mvn io.quarkus:quarkus-maven-plugin:1.2.1.Final:create \
-    -DprojectGroupId=org.garpesa.services \
-    -DprojectArtifactId=second-service \
-    -DclassName="org.garpesa.services.consumer.controller.ConsumerController" \
-    -Dpath="/consumers" \
-    -Dextensions="resteasy-jsonb, hibernate-validator"
-```
-
-```
-curl -X GET "http://localhost:8082/consumers/message"
-curl -X GET "http://localhost:8082/health"
-```
 
 
 
