@@ -305,6 +305,9 @@ java -jar target/cloud-gateway-service-0.0.1-SNAPSHOT.jar
 ```bash
 $ curl http://localhost:8080/get
 $ curl -f http://localhost:8888/actuator/health
+
+https://hub.docker.com/repository/docker/smartgates/login-mock
+curl -v --user root:toor http://localhost:8888/login/authentication
 ```
 
 https://spring.io/guides/gs/gateway/
