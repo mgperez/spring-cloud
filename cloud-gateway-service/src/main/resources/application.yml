@@ -38,11 +38,11 @@ spring:
           predicates:
             - Path=/login/**
         - id: employeeModule-ms-2
-          uri: http://${MS1_HOST}:8081/
+          uri: http://${MS1_HOST}/
           predicates:
             - Path=/employees/**
         - id: consumerModule-ms-3
-          uri: http://${MS2_HOST}:8082/
+          uri: http://${MS2_HOST}/
           predicates:
             - Path=/consumers/**
         - id: flights-service

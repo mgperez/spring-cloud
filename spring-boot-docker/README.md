@@ -94,6 +94,7 @@ $> docker images | grep config
 ```
 docker-compose config
 docker-compose up --build -d
+docker-compose ps
 docker-compose down
 docker rmi $(docker images -q -f dangling=true)
 ```

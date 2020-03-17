@@ -51,6 +51,7 @@ To create an image from our Dockerfile, we have to run ‘docker build', like be
 
 ```
 docker build -f src/main/docker/Dockerfile.jvm -t mgperez/gateway:jvm --rm=true .
+docker tag mgperez/gateway:jvm mgperez/gateway:jvm
 % docker images | grep -i mgperez
 
 docker run -i --rm -p 8888:8888 -d --name gateway mgperez/gateway:jvm
@@ -78,7 +79,12 @@ https://hub.docker.com/repository/docker/mgperez/gateway/tags?page=1
 ### Others
 
 https://hub.docker.com/repository/docker/smartgates/login-mock
+
+```
 curl -v --user root:toor http://localhost:8888/login/authentication
+```
+
+https://hub.docker.com/r/smartgates/summary-mock 
 
 
 
