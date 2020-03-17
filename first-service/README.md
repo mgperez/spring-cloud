@@ -4,6 +4,24 @@ This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
 If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
 
+### Bootstrapping
+
+Make sure you have read the prerequisites in https://quarkus.io/guides/getting-started-guide
+
+https://code.quarkus.io/
+
+- RESTEasy JSON-B:  Java API for JSON Binding (JSR 367: JSON-B API) serialization support for RESTEasy
+- Hibernate Validator: Validate data coming to your REST endpoints
+
+### Extensions
+
+```
+mvn quarkus:list-extensions
+
+mvn quarkus:add-extension -Dextensions="io.quarkus:quarkus-smallrye-health"
+mvn quarkus:add-extension -Dextensions="io.quarkus:quarkus-smallrye-openapi"
+```
+
 ### Running in dev mode
 
 To develop and run the service continuously in dev mode that enables live coding using:
@@ -65,8 +83,6 @@ You can then execute your binary: `./target/*-runner`
 
 If you want to learn more about building native executables, please consult https://quarkus.io/guides/building-native-image-guide .
 
-
-
 ### Containerization
 
 The containerization can be done on two ways: as normal JVM based application and as a natively compiled binary. The Dockerfile sources are located in src/main/docker.
@@ -116,8 +132,6 @@ docker run -i --rm -p 8080:8080 -d --name first-service mgperez/first-service:na
 % docker ps | grep first
 % docker kill first-service
 ```
-
-
 
 ### Docker Hub
 
