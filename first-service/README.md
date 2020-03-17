@@ -38,7 +38,8 @@ To build it, use `mvn package`.
 The application is packageable using:
 
 ```
-./mvnw package -DskipTests
+./mvnw clean package -DskipTests
+% ls target/*-runner.jar
 ```
 
 It produces the executable `*-runner.jar` file in `/target` directory.
@@ -91,7 +92,9 @@ Use the following command to build a normal JVM image and run it:
 
 ```
 docker build -f src/main/docker/Dockerfile.jvm -t mgperez/first-service:jvm .
-docker run -i --rm -p 8080:8080 mgperez/first-service:jvm
+docker run -i --rm -p 8080:8080 -d --name first-service mgperez/first-service:jvm
+% docker ps | grep first
+% docker kill first-service
 ```
 
 To build the native binary image and make it even smaller, use a Quarkus distroless base image. Use the following Dockerfile and put it into src/main/docker/Dockerfile.native.
@@ -140,8 +143,10 @@ https://hub.docker.com/
 ```
 % docker login
 docker tag mgperez/first-service:native mgperez/first-service:native
+docker tag mgperez/first-service:jvm mgperez/first-service:jvm
 # upload an image
 % docker push mgperez/first-service:native
+% docker push mgperez/first-service:jvm
 ```
 
-https://hub.docker.com/repository/docker/mgperez/first-service
+https://hub.docker.com/repository/docker/mgperez/first-service/tags?page=1
