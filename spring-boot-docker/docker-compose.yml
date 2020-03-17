@@ -3,7 +3,7 @@ version: '2.3'
 services:
     gateway:
         restart: unless-stopped
-        container_name: gateway
+        container_name: mgperez/gateway.jvm
 #        build:
 #            context: ../cloud-gateway-service
 #            dockerfile: src/main/docker/Dockerfile.gateway
@@ -37,7 +37,7 @@ services:
     first-service:
         restart: unless-stopped
         container_name: first-service
-        image: mgperez/first-service:jvm
+        image: mgperez/first-service:native
 #        build:
 #            context: ../first-service
 #            dockerfile: src/main/docker/Dockerfile.jvm
@@ -53,7 +53,7 @@ services:
     second-service:
         restart: unless-stopped
         container_name: second-service
-        image: mgperez/second-service:jvm
+        image: mgperez/second-service:native
  #       build:
  #           context: ../second-service
  #           dockerfile: src/main/docker/Dockerfile.jvm
