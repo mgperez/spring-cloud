@@ -9,6 +9,8 @@ If you want to learn more about Quarkus, please visit its website: https://quark
 To develop and run the service continuously in dev mode that enables live coding using:
 ```
 ./mvnw compile quarkus:dev -Ddebug=false
+# stop/terminate
+Ctrl+C
 ```
 
 To build it, use `mvn package`.
@@ -33,8 +35,8 @@ java -jar target/*-runner.jar
 ### Testing
 
 ```
-curl -X GET "http://localhost:8081/employees/message"
-curl -X GET "http://localhost:8081/health"
+curl -X GET "http://localhost:8080/employees/message"
+curl -X GET "http://localhost:8080/health"
 ```
 
 ### Creating a native executable
@@ -49,9 +51,17 @@ Or you can use Docker to build the native executable using:
 
 ```
 ./mvnw package -Pnative -Dquarkus.native.container-build=true
+
+# to build in a container it is recommended you add these to your application.properties so you do not need to specify them every time.
+quarkus.native.container-build=true
+quarkus.native.container-runtime=docker
 ```
 
 You can then execute your binary: `./target/*-runner`
+
+```
+% ls target/*-runner
+```
 
 If you want to learn more about building native executables, please consult https://quarkus.io/guides/building-native-image-guide .
 
@@ -94,21 +104,30 @@ Then, if you didn’t delete the generated native executable, you can build the 
 ```
 # Create the docker image in the image local repository:
 docker build -f src/main/docker/Dockerfile.native -t mgperez/first-service:native .
+% docker images | grep -i mgperez
 ```
 
 And finally, run it with:
 
+https://linuxize.com/post/docker-run-command/
+
 ```
-docker run -i --rm -p 8080:8080 mgperez/first-service:native
+docker run -i --rm -p 8080:8080 -d --name first-service mgperez/first-service:native
+% docker ps | grep first
+% docker kill first-service
 ```
 
 
 
 ### Docker Hub
 
+https://hub.docker.com/
+
 ```
-docker login
+% docker login
+docker tag mgperez/first-service:native mgperez/first-service:native
 # upload an image
-docker push mgperez/first-service:native
+% docker push mgperez/first-service:native
 ```
 
+https://hub.docker.com/repository/docker/mgperez/first-service
