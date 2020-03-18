@@ -46,7 +46,7 @@ services:
             interval: 10s
             timeout: 1s
             retries: 66
-        ports: ['8081:8080'] # the HTTP endpoint
+        ports: ['9081:8080'] # the HTTP endpoint
         networks:
             - quarkus
 
@@ -62,7 +62,7 @@ services:
             interval: 10s
             timeout: 1s
             retries: 66
-        ports: ['8082:8080'] # the HTTP endpoint
+        ports: ['9082:8080'] # the HTTP endpoint
         networks:
             - quarkus
 
@@ -78,10 +78,41 @@ services:
 #            interval: 10s
 #            timeout: 1s
 #            retries: 66
-        ports: ['8080:8080'] # the HTTP endpoint
+        ports: ['9080:8080'] # the HTTP endpoint
         networks:
             - quarkus
-        
+
+#    summary-mock:
+#        restart: unless-stopped
+#        container_name: summary-mock
+#        image: mgperez/summary-mock:jvm
+#        build:
+#            context: ../quarkus-hibernate
+#            dockerfile: src/main/docker/Dockerfile.jvm
+#        healthcheck:
+#            test: ["CMD-SHELL", "curl -f http://127.0.0.1:8080/health || exit 1"]
+#            interval: 10s
+#            timeout: 1s
+#            retries: 66
+#        ports: ['9083:8080'] # the HTTP endpoint
+#        depends_on:
+#            - postgres
+#        networks:
+#            - quarkus
+
+    postgres:
+        image: postgres
+        container_name: person-pg
+        environment:
+            POSTGRES_USER: sarah
+            POSTGRES_DB: statistics
+            POSTGRES_PASSWORD: connor
+        ports: ['5432:5432'] # the HTTP endpoint
+        volumes:
+            - postgres-data:/var/lib/postgresql/data
+        networks:
+            - quarkus
+                
     web:
         #    network_mode: host
 #        image: smartgates/ibcs-manager
@@ -101,6 +132,10 @@ services:
 networks:
     quarkus:
         driver: bridge
-#volumes:
+
+# docker volume create --name=postgres-data
+volumes:
+    postgres-data:
+        external: true
 #    spring-cloud-config-repo:
 #        external: true

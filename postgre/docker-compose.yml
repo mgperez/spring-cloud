@@ -1,0 +1,25 @@
+version: '2.3'
+
+services:
+
+    postgres:
+        image: postgres
+        container_name: person-pg
+        environment:
+            POSTGRES_USER: sarah
+            POSTGRES_DB: statistics
+            POSTGRES_PASSWORD: connor
+        ports: ['5432:5432'] # the HTTP endpoint
+        volumes:
+            - postgres-data:/var/lib/postgresql/data
+        networks:
+            - quarkus
+                
+networks:
+    quarkus:
+        driver: bridge
+
+# docker volume create --name=postgres-data
+volumes:
+    postgres-data:
+        external: true

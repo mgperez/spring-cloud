@@ -19,6 +19,7 @@
 		<module>cloud-gateway-service</module>
 		<module>first-service</module>
 		<module>second-service</module>
+		<module>quarkus-hibernate</module>
 	</modules>
 
 </project>

@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="c584cf58-b0a0-4276-add9-49f6a9613fb5" activeEnvironment="Default" name="summary-screen" resourceRoot="" soapui-version="5.5.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:RestService" id="70948760-94b6-432c-96af-03c60a3e1c5a" wadlVersion="http://wadl.dev.java.net/2009/02" name="summary" type="rest" basePath="/summary" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://localhost:8080</con:endpoint></con:endpoints><con:resource name="Table" path="/table" id="159d1311-aca4-4106-9fa3-5787ad411d8f"><con:settings/><con:parameters/><con:resource name="throughput" path="throughput" id="4ab10aa9-a726-472c-b3b0-21e6b5e6db2f"><con:settings/><con:parameters/><con:method name="Method 1" id="0ac6fe93-d982-4189-8a60-082a94e761b6" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:thr="http://localhost/summary/table/throughput">thr:Response</con:element></con:representation><con:representation type="FAULT"><con:mediaType>application/json</con:mediaType><con:status>400 404</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>204</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>204</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:request name="Request 1" id="a83622ad-e2e0-4e18-85a1-f47df852b06a" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8080</con:endpoint><con:request/><con:originalUri>http://localhost/summary/table/throughput</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource><con:resource name="peak-capacity" path="/peak-capacity" id="4af70e18-345a-4e47-a360-d7a71870c615"><con:settings/><con:parameters/><con:method name="Method 1" id="4fb5b7f8-df92-48eb-a865-db29be96c27b" method="GET"><con:settings/><con:parameters/><con:representation type="FAULT"><con:mediaType xsi:nil="true"/><con:status>404</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="FAULT"><con:mediaType xsi:nil="true"/><con:status>404</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="FAULT"><con:mediaType xsi:nil="true"/><con:status>404</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>200</con:status><con:params/></con:representation><con:request name="Request 1" id="e30194a6-97bd-47d5-8a81-7b318f01cf3b" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8080</con:endpoint><con:request/><con:originalUri>http://localhost/summary/table/peak-capacity</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource></con:resource><con:resource name="graph" path="graph" id="d842a945-de93-4b63-96eb-f66783d499a7"><con:settings/><con:parameters/><con:resource name="passengers_timing" path="passengers_timing" id="4f79f28a-443d-4b1e-88d5-fa025a8bfdbf"><con:settings/><con:parameters/><con:method name="Method 1" id="9e57491e-4848-467b-b218-71bffb3b960a" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:pas="http://localhost/summary/graph/passengers_timing">pas:Response</con:element></con:representation><con:representation type="FAULT"><con:mediaType>application/json</con:mediaType><con:status>404</con:status><con:params/></con:representation><con:request name="Request 1" id="dc2c9bff-53e5-48cd-9079-6024055cab5c" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8080</con:endpoint><con:request/><con:originalUri>http://localhost/summary/graph/passengers_timing</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource></con:resource></con:interface><con:restMockService id="fdd71f34-365b-418f-a1d7-17af3416861b" port="8080" path="/" host="AGMAYO10" name="summary-service"><con:settings/><con:properties/><con:restMockAction name="/summary/table/throughput" method="GET" resourcePath="/summary/table/throughput" id="e6d59bcf-385e-4611-9585-8de607ac6201"><con:settings/><con:defaultResponse>OK</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Script dispatcher is used to select a response based on the incoming request.
+// Here are few examples showing how to match based on path, query param, header and body
+
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeaderList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncoding Header List: " + acceptEncodingHeaderList
+
+if( acceptEncodingHeaderList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+
+// Match based on body
+def requestBody = mockRequest.getRequestContent()
+log.info "Request body: " + requestBody
+
+if( requestBody.contains("some data") )
+{
+    // return the name of the response you want to dispatch
+    return "Response N"
+}
+*/
+</con:dispatchPath><con:response name="OK" id="ff214347-c1c0-4d69-be30-5c965e0a0ac1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
+	"no_passengers": 606,
+	"previous_period":234.8
+}
+</con:responseContent></con:response><con:response name="KO" id="aff31fcc-e41e-4b44-91d1-50bdfd350f99" httpResponseStatus="400" mediaType="application/json"><con:settings/><con:responseContent/></con:response></con:restMockAction><con:restMockAction name="/summary/table/peak_capacity" method="GET" resourcePath="/summary/table/peak-capacity" id="dec91129-dcd5-449f-874b-03170ebce911"><con:settings/><con:defaultResponse xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Script dispatcher is used to select a response based on the incoming request.
+// Here are few examples showing how to match based on path, query param, header and body
+
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeaderList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncoding Header List: " + acceptEncodingHeaderList
+
+if( acceptEncodingHeaderList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+
+// Match based on body
+def requestBody = mockRequest.getRequestContent()
+log.info "Request body: " + requestBody
+
+if( requestBody.contains("some data") )
+{
+    // return the name of the response you want to dispatch
+    return "Response N"
+}
+*/
+</con:dispatchPath><con:response name="OK" id="8332ad5c-70a1-45f3-b5ce-e3eda454cf87" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[
+	{
+		name: "Peak 24 hr",
+		from: 2018-12-13T10:07Z,
+		to: 2018-12-14T10:07Z,
+		total: 606
+	},
+	{
+		name: "Peak 1",
+		from: 2018-12-13T10:07Z,
+		to: 2018-12-13T11:07Z,
+		total: 214
+	},
+	{
+		name: "Peak 30 mins"
+		from: 2018-12-13T10:16Z,
+		to: 2018-12-13T10:46Z,
+		total: 156
+	},
+	{
+		name: "Peak 15 mins"
+		from: 2018-12-13T10:13Z,
+		to: 2018-12-13T10:28Z,
+		total: 91
+	},
+	
+]
+</con:responseContent></con:response><con:response name="KO" id="028deec3-088e-477d-b379-ab8a82fd63ba" httpResponseStatus="400" mediaType="application/json"><con:settings/><con:responseContent/></con:response></con:restMockAction><con:restMockAction name="/summary/graph/passengers_timing" method="GET" resourcePath="/summary/graph/passengers_timing" id="f44ed176-5be4-466f-a265-edac0a5f76b4"><con:settings/><con:defaultResponse>OK</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Script dispatcher is used to select a response based on the incoming request.
+// Here are few examples showing how to match based on path, query param, header and body
+
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeaderList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncoding Header List: " + acceptEncodingHeaderList
+
+if( acceptEncodingHeaderList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+
+// Match based on body
+def requestBody = mockRequest.getRequestContent()
+log.info "Request body: " + requestBody
+
+if( requestBody.contains("some data") )
+{
+    // return the name of the response you want to dispatch
+    return "Response N"
+}
+*/
+</con:dispatchPath><con:response name="OK" id="59cf9572-1fba-411d-a715-2a89efc4043c" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent><![CDATA[{
+	labels:["<15.0s","<17.5s","<20.0s","<22.5s","<25.0s","<27.5s","<30.0s","<40.0s"],
+	datasets:
+	[
+		{
+		data : [36,62,75,82,87,91,92,96]
+		}
+	]
+}
+]]></con:responseContent></con:response><con:response name="KO" id="d1b99e55-126f-44cb-b07f-b4135ea0aeb2" httpResponseStatus="404" mediaType="application/json"><con:settings/><con:responseContent/></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>

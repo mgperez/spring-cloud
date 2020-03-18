@@ -61,6 +61,8 @@ https://www.youtube.com/watch?v=5vENgNBphzQ
 ```
 docker volume create --name=spring-cloud-config-repo
 $> docker volume ls | grep spring
+docker volume create --name=postgres-data
+$> docker volume ls | grep postgres
 ```
 
 NOTICE: While a container is immutable, when not committed to an image after application exits, data stored in a volume will be persistent over several containers.
@@ -96,6 +98,9 @@ docker-compose config
 docker-compose up --build -d
 docker-compose ps
 docker-compose down
+
+docker stop $(docker ps -a -q)
+docker rm $(docker ps -a -q)
 docker rmi $(docker images -q -f dangling=true)
 ```
 

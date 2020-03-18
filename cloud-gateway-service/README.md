@@ -80,6 +80,8 @@ https://hub.docker.com/repository/docker/mgperez/gateway/tags?page=1
 
 https://hub.docker.com/repository/docker/smartgates/login-mock
 
+https://github.com/JulianToledano/quarkus_login
+
 ```
 curl -v --user root:toor http://localhost:8888/login/authentication
 ```
