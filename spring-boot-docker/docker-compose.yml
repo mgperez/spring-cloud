@@ -129,7 +129,8 @@ services:
             - postgres-data:/var/lib/postgresql/data
         networks:
             - quarkus
-                
+
+            
     web:
         #    network_mode: host
 #        image: smartgates/ibcs-manager

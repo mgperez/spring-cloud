@@ -107,7 +107,9 @@ docker-compose up --build -d
 docker-compose ps
 
 $>../postgre/
+$ docker-compose -f docker-compose.postgre.yml config
 $ docker-compose -f docker-compose.postgre.yml up -d
+$ docker-compose -f docker-compose.postgre.yml ps
 $ docker-compose -f docker-compose.postgre.yml down -v
 
 docker stop $(docker ps -a -q)

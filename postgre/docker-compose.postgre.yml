@@ -1,10 +1,10 @@
 version: '2.3'
-
+# https://github.com/peter-evans/docker-compose-healthcheck/blob/master/docker-compose.yml
 services:
-    database:
+    postgres:
         image: postgres:latest
         restart: always
-        container_name: database
+        container_name: pg-database
         environment:
             POSTGRES_USER: sarah
             POSTGRES_DB: statistics
@@ -17,8 +17,22 @@ services:
             retries: 5
         volumes:
             - postgres-data:/var/lib/postgresql/data
+            - ./init.sql:/docker-entrypoint-initdb.d/init.sql
         networks:
             - quarkus
+
+# COPY init.sql /docker-entrypoint-initdb.d/10-init.sql            
+#    pg-migration:
+#        image: kong
+#        container_name: pg-migration
+#        depends_on:
+#            pg-database:
+#                condition: service_healthy
+#        environment:
+#            - DATABASE=statistics
+#            - PG_HOST=pg-database
+#        command: kong migrations bootstrap
+            
                 
 networks:
     quarkus:
@@ -28,3 +42,26 @@ networks:
 volumes:
     postgres-data:
         driver: local
+        
+# $ docker-compose up -d  
+# $ docker exec -it pg-database -Usarah
+#
+# $ docker exec -it pg-database bash
+# psql -d statistics -U sarah -W
+
+# $ winpty docker exec -it pg-database bash
+# psql -h pg-database -d statistics -U sarah -W
+
+# https://sqlbackupandftp.com/blog/how-to-backup-and-restore-postgresql-database
+# pg_dump -U sarah statistics > database.sql  
+
+# Backup your databases
+# docker exec -t <CONTAINERNAME> pg_dumpall -c -U {user} > dump_`date +%d-%m-%Y"_"%H_%M_%S`.sql
+
+# Restore your databases
+# cat your_dump.sql | docker exec -i {your-db-container} psql -U {user} -d {database_name}
+# cat dump_18-03-2020_19_36_52.sql | docker exec -i <CONTAINERNAME> psql -U sarah -d statistics
+# docker ps
+# cat dump_18-03-2020_19_36_52.sql | docker exec -i pg-database psql -U sarah -d statistics
+#
+# docker run -it --link CONTAINERNAME:postgres  --volume $PWD/:/tmp/  postgres  bash -c 'exec pg_restore -h postgres -U sarah -d statistics -F c /tmp/sonar.dmp'

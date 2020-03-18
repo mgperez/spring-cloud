@@ -1,14 +1,15 @@
-version: '2.3'
+version: '2.1'
 
 services:
-    database:
+    postgres:
         image: postgres:latest
         restart: always
-        container_name: database
+        container_name: pg-database
         environment:
-            POSTGRES_USER: sarah
             POSTGRES_DB: statistics
+            POSTGRES_USER: sarah            
             POSTGRES_PASSWORD: connor
+        #  - POSTGRES_PASSWORD_FILE=/run/secrets/db_password <-- alternative for POSTGRES_PASSWORD (to use with docker secrets)    
         ports: ['5432:5432'] # the HTTP endpoint
         healthcheck:
             test: ["CMD-SHELL", "pg_isready -U postgres"]
@@ -19,7 +20,32 @@ services:
             - postgres-data:/var/lib/postgresql/data
         networks:
             - quarkus
-                
+    pgbackups:  # By default this container makes daily backups
+        image: prodrigestivill/postgres-backup-local
+        container_name: pg-backups
+        restart: always
+        volumes:
+            - /var/opt/pgbackups:/backups
+        links:
+            - postgres
+        depends_on:
+            postgres:
+                condition: service_healthy
+        environment:
+            - POSTGRES_HOST=postgres
+            - POSTGRES_DB=statistics
+            - POSTGRES_USER=sarah
+            - POSTGRES_PASSWORD=connor
+            #  - POSTGRES_PASSWORD_FILE=/run/secrets/db_password <-- alternative for POSTGRES_PASSWORD (to use with docker secrets)
+            - POSTGRES_EXTRA_OPTS=-Z9 --schema=public --blobs
+            - SCHEDULE=@daily
+            - BACKUP_KEEP_DAYS=7
+            - BACKUP_KEEP_WEEKS=4
+            - BACKUP_KEEP_MONTHS=6
+            - HEALTHCHECK_PORT=80
+        networks:
+            - quarkus
+
 networks:
     quarkus:
         driver: bridge
