@@ -114,7 +114,7 @@ services:
     database:
         image: postgres:latest
         restart: always
-        container_name: person-pg
+        container_name: database
         environment:
             POSTGRES_USER: sarah
             POSTGRES_DB: statistics

@@ -25,8 +25,9 @@ networks:
         driver: bridge
 
 # docker volume create --name=postgres-data
+# docker volume create --name=postgres-data
 # docker volume ls | grep postgres
-# docker volume inspect postgre_postgres-data
+# docker volume inspect postgres-data
 volumes:
     postgres-data:
-        driver: local
+        external: true
