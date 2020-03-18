@@ -15,3 +15,4 @@ docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
 docker rmi -f $(docker images | grep "smart" | awk '/ / { print $3 }')
 
 docker rmi -f $(docker images | grep "mgperez" | awk '/ / { print $3 }')
+

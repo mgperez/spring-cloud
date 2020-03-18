@@ -12,7 +12,8 @@ services:
         networks:
             - quarkus
         links:
-            - login-mock:login-mock
+            - login-service:login-service
+            - summary-service:summary-service
             - first-service:first-service
             - second-service:second-service
             - web:web
@@ -21,8 +22,11 @@ services:
                 condition: service_healthy
             second-service:
                 condition: service_healthy
+            summary-service:
+                condition: service_healthy
         environment:
-            - LOGIN_HOST=login-mock:8080
+            - LOGIN_HOST=login-service:8080
+            - SUMMARY_HOST=summary-service:8080
             - MS1_HOST=first-service:8080
             - MS2_HOST=second-service:8080
             - WEB_HOST=web:5000
@@ -66,7 +70,7 @@ services:
         networks:
             - quarkus
 
-    login-mock:
+    login-service:
         restart: unless-stopped
         container_name: login-mock
         image: smartgates/login-mock:latest
@@ -82,32 +86,45 @@ services:
         networks:
             - quarkus
 
-#    summary-mock:
-#        restart: unless-stopped
-#        container_name: summary-mock
-#        image: mgperez/summary-mock:jvm
+    summary-service:
+        restart: unless-stopped
+        container_name: summary-mock
+        image: mgperez/summary-mock:native
 #        build:
 #            context: ../quarkus-hibernate
 #            dockerfile: src/main/docker/Dockerfile.jvm
-#        healthcheck:
-#            test: ["CMD-SHELL", "curl -f http://127.0.0.1:8080/health || exit 1"]
-#            interval: 10s
-#            timeout: 1s
-#            retries: 66
-#        ports: ['9083:8080'] # the HTTP endpoint
-#        depends_on:
-#            - postgres
-#        networks:
-#            - quarkus
+        environment:
+            PGHOST: database
+            PGDATABASE: statistics
+            PGUSER: sarah
+        healthcheck:
+            test: ["CMD-SHELL", "curl -f http://127.0.0.1:8080/health || exit 1"]
+            interval: 10s
+            timeout: 1s
+            retries: 66
+        ports: ['9083:8080'] # the HTTP endpoint
+        links:
+            - database:database
+        depends_on:
+            database:
+                condition: service_healthy
+        networks:
+            - quarkus
 
-    postgres:
-        image: postgres
+    database:
+        image: postgres:latest
+        restart: always
         container_name: person-pg
         environment:
             POSTGRES_USER: sarah
             POSTGRES_DB: statistics
             POSTGRES_PASSWORD: connor
         ports: ['5432:5432'] # the HTTP endpoint
+        healthcheck:
+            test: ["CMD-SHELL", "pg_isready -U postgres"]
+            interval: 10s
+            timeout: 5s
+            retries: 5
         volumes:
             - postgres-data:/var/lib/postgresql/data
         networks:

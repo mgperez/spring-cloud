@@ -128,6 +128,7 @@ Then, if you didn’t delete the generated native executable, you can build the 
 ```
 # Create the docker image in the image local repository:
 docker build -f src/main/docker/Dockerfile.native -t mgperez/first-service:native .
+docker tag mgperez/first-service:native mgperez/first-service:native
 % docker images | grep -i mgperez
 ```
 

@@ -117,3 +117,46 @@ curl -X GET "http://localhost:8080/health"
 % docker kill summary-mock
 ```
 
+To build the native binary image and make it even smaller, use a Quarkus distroless base image. Use the following Dockerfile and put it into src/main/docker/Dockerfile.native.
+
+Then use the following command to build the native image and run it:
+
+[For more info](https://quarkus.io/guides/building-native-image#creating-a-container)
+
+```
+# Maven build to produce an executable from inside a container:
+./mvnw clean package -Pnative -DskipTests
+```
+
+Then, if you didn’t delete the generated native executable, you can build the docker image with:
+
+```
+# Create the docker image in the image local repository:
+docker build -f src/main/docker/Dockerfile.native -t mgperez/summary-mock:native .
+docker tag mgperez/summary-mock:native mgperez/summary-mock:native
+% docker images | grep -i mgperez
+```
+
+And finally, run it with:
+
+https://linuxize.com/post/docker-run-command/
+
+```
+docker run -i --rm -p 8080:8080 -d --name summary-mock mgperez/summary-mock:native
+% docker ps | grep summary-mock
+% docker kill summary-mock
+```
+
+### Docker Hub
+
+https://hub.docker.com/
+
+```
+% docker login
+
+# upload an image
+% docker push mgperez/summary-mock:native
+% docker push mgperez/summary-mock:jvm
+```
+
+https://hub.docker.com/repository/docker/mgperez/summary-mock/tags?page=1

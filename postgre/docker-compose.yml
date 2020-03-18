@@ -2,14 +2,48 @@ version: '2.3'
 
 services:
 
-    postgres:
-        image: postgres
-        container_name: person-pg
+    summary-mock:
+        restart: unless-stopped
+        container_name: summary-mock
+        image: mgperez/summary-mock:jvm
+        build:
+            context: ../quarkus-hibernate
+            dockerfile: src/main/docker/Dockerfile.jvm
+        expose:
+            - 8080
+        ports:
+            - 8080:8080
+        environment:
+            PGHOST: database
+            PGDATABASE: statistics
+            PGUSER: sarah
+        healthcheck:
+            test: ["CMD-SHELL", "curl -f http://127.0.0.1:8080/health || exit 1"]
+            interval: 10s
+            timeout: 1s
+            retries: 66
+        links:
+            - database:database
+        depends_on:
+            database:
+                condition: service_healthy
+        networks:
+            - quarkus
+
+    database:
+        image: postgres:latest
+        restart: always
+        container_name: person-postgres
         environment:
             POSTGRES_USER: sarah
             POSTGRES_DB: statistics
             POSTGRES_PASSWORD: connor
         ports: ['5432:5432'] # the HTTP endpoint
+        healthcheck:
+            test: ["CMD-SHELL", "pg_isready -U postgres"]
+            interval: 10s
+            timeout: 5s
+            retries: 5
         volumes:
             - postgres-data:/var/lib/postgresql/data
         networks:
@@ -22,4 +56,4 @@ networks:
 # docker volume create --name=postgres-data
 volumes:
     postgres-data:
-        external: true
+        driver: local

@@ -45,6 +45,10 @@ spring:
           uri: http://${MS2_HOST}/
           predicates:
             - Path=/consumers/**
+        - id: summary-ms-4
+          uri: http://${SUMMARY_HOST}/
+          predicates:
+            - Path=/summary/**
         - id: flights-service
           uri: http://127.0.0.1:8083/flights
           predicates:

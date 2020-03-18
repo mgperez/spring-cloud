@@ -1,4 +1,4 @@
-#### Dockerizing a Spring Boot Application
+####  Dockerizing a Spring Boot Application
 
 https://www.baeldung.com/dockerizing-spring-boot-application
 
@@ -94,10 +94,17 @@ $> docker images | grep config
 4. Dockerize Dependent Applications in a Composite
 
 ```
+# Then run:
 docker-compose config
+# Removing volume 
+docker-compose down -v
+
+docker-compose build
+docker-compose up -d
+
 docker-compose up --build -d
 docker-compose ps
-docker-compose down
+
 
 docker stop $(docker ps -a -q)
 docker rm $(docker ps -a -q)
