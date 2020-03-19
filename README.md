@@ -10,6 +10,8 @@ https://www.javainuse.com/spring/cloud-gateway
 
 https://github.com/TechPrimers/spring-cloud-eureka-and-hystrix-example
 
+https://spring.io/projects/spring-cloud-gateway#samples
+
 
 
 My experiences with API gateways…
