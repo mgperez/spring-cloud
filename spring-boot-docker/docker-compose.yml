@@ -141,7 +141,7 @@ services:
 #            context: ./borrame_20200313/operational-registry/mcsegates-operationalreg-front
 #            dockerfile: Dockerfile
 #            args:
-#            - VUE_APP_API_URL=http://gateway:8888/
+#            - VUE_APP_API_URL=http://localhost:8888/
         privileged: true
         ports: ['5000:8080'] # host:container
         networks:

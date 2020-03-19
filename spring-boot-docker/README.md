@@ -29,7 +29,7 @@ docker tag mgperez/alpine-java:base mgperez/alpine-java:base
 
 
 
-3. Dockerize a Standalone Spring Boot Application
+### Dockerize a Standalone Spring Boot Application
 
 As a preparation-step, we have to assemble a runnable jar file
 
@@ -91,7 +91,7 @@ $> docker images | grep config
 
 
 
-4. Dockerize Dependent Applications in a Composite
+### Dockerize Dependent Applications in a Composite
 
 ```
 # Then run:
@@ -104,6 +104,7 @@ docker-compose up -d
 
 # (default: docker-compose.yml)
 docker-compose up --build -d
+
 docker-compose ps
 
 $>../postgre/
@@ -112,6 +113,7 @@ $ docker-compose -f docker-compose.postgre.yml up -d
 $ docker-compose -f docker-compose.postgre.yml ps
 $ docker-compose -f docker-compose.postgre.yml down -v
 
+Clean container
 docker stop $(docker ps -a -q)
 docker rm $(docker ps -a -q)
 docker rmi $(docker images -q -f dangling=true)

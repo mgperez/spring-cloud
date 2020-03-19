@@ -160,3 +160,29 @@ https://hub.docker.com/
 ```
 
 https://hub.docker.com/repository/docker/mgperez/summary-mock/tags?page=1
+
+
+
+### Backup your databases
+
+```
+% docker ps
+% docker-compose ps
+
+docker exec -t {your-db-container} pg_dumpall -c -U {user} > dump_`date +%d-%m-%Y"_"%H_%M_%S`.sql
+
+docker exec -t database pg_dumpall -c -U sarah > dump_`date +%d-%m-%Y"_"%H_%M_%S`.sql
+
+% ls *.sql
+
+
+```
+
+### Restore your databases
+
+```
+cat your_dump.sql | docker exec -i {your-db-container} psql -U {user} -d {database_name}
+
+cat dump_18-03-2020_19_36_52.sql | docker exec -i database psql -U sarah -d statistics
+```
+
