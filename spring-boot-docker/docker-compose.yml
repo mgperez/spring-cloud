@@ -89,10 +89,10 @@ services:
     summary-service:
         restart: unless-stopped
         container_name: summary-mock
-        image: mgperez/summary-mock:native
+        image: mgperez/summary-mock:jvm
 #        build:
 #            context: ../quarkus-hibernate
-#            dockerfile: src/main/docker/Dockerfile.jvm
+#            dockerfile: src/main/docker/Dockerfile.native
         environment:
             PGHOST: database
             PGDATABASE: statistics
