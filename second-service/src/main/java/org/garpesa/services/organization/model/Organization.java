@@ -1,4 +1,4 @@
-package pl.piomin.services.organization.model;
+package org.garpesa.services.organization.model;
 
 import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;

@@ -1,12 +1,13 @@
 package org.garpesa.services.organization.controller;
 
 import org.eclipse.microprofile.rest.client.inject.RestClient;
+import org.garpesa.services.organization.client.DepartmentClient;
+import org.garpesa.services.organization.client.EmployeeClient;
+import org.garpesa.services.organization.model.Organization;
+import org.garpesa.services.organization.repository.OrganizationRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.piomin.services.organization.client.DepartmentClient;
-import pl.piomin.services.organization.client.EmployeeClient;
-import pl.piomin.services.organization.model.Organization;
-import pl.piomin.services.organization.repository.OrganizationRepository;
+
 
 import javax.inject.Inject;
 import javax.validation.Valid;

@@ -1,4 +1,4 @@
-package pl.piomin.services.employee.controller;
+package org.garpesa.services.employee.controller;
 
 import org.eclipse.microprofile.health.HealthCheck;
 import org.eclipse.microprofile.health.HealthCheckResponse;

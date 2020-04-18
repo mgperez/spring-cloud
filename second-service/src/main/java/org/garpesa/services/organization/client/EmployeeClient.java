@@ -1,7 +1,8 @@
-package pl.piomin.services.organization.client;
+package org.garpesa.services.organization.client;
 
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
-import pl.piomin.services.organization.model.Employee;
+import org.garpesa.services.organization.model.Employee;
+
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

@@ -1,10 +1,13 @@
-package pl.piomin.services.organization.repository;
+package org.garpesa.services.organization.repository;
 
-import java.util.*;
 
-import pl.piomin.services.organization.model.Organization;
+
+import org.garpesa.services.organization.model.Organization;
 
 import javax.enterprise.context.ApplicationScoped;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
 
 @ApplicationScoped
 public class OrganizationRepository {

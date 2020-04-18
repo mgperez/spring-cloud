@@ -1,9 +1,9 @@
-package pl.piomin.services.organization.client;
+package org.garpesa.services.organization.client;
 
 import io.quarkus.test.Mock;
-import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
-import pl.piomin.services.organization.model.Department;
+import org.garpesa.services.organization.model.Department;
+
 
 import javax.enterprise.context.ApplicationScoped;
 import java.util.Collections;

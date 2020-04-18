@@ -10,7 +10,7 @@ props:
   gateway:
     proto: http
     host: 127.0.0.1
-    port: 8002
+    port: 8888
     url: ${props.gateway.proto}://${props.gateway.host}:${props.gateway.port}
   ui:
     proto: http

@@ -6,9 +6,9 @@ services:
         container_name: gateway
 #        build:
 #            context: ../cloud-gateway-service
-#            dockerfile: src/main/docker/Dockerfile.gateway
+#            dockerfile: src/main/docker/Dockerfile.jvm
         image: mgperez/gateway:jvm
-        ports: ['8888:8888']
+        ports: ['8889:8888']
         networks:
             - quarkus
         links:
@@ -29,7 +29,7 @@ services:
             - SUMMARY_HOST=summary-service:8080
             - MS1_HOST=first-service:8080
             - MS2_HOST=second-service:8080
-            - WEB_HOST=web:5000
+            - WEB_HOST=web:8080
 #        volumes:
 #            - spring-cloud-config-repo:/var/lib/spring-cloud/config-repo
         healthcheck:
@@ -141,9 +141,10 @@ services:
 #            context: ./borrame_20200313/operational-registry/mcsegates-operationalreg-front
 #            dockerfile: Dockerfile
 #            args:
-#            - VUE_APP_API_URL=http://localhost:8888/
+#            #- VUE_APP_API_URL=http://localhost:8889/
+#            - VUE_APP_API_URL=http://gateway:8889/
         privileged: true
-        ports: ['5000:8080'] # host:container
+#        ports: ['5000:8080'] # host:container
         networks:
             - quarkus
     

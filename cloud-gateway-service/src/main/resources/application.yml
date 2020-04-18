@@ -1,7 +1,34 @@
-server:
-  port: 8888
-
 spring:
+  profiles:
+    include:
+      - props
+      - server
+      - spring-boot
+      - spring-cloud
+      - actuator
+      - logging
+---
+spring:
+  profiles:
+    active: server
+server:
+  port: ${props.gateway.port}
+---
+spring:
+  profiles:
+    active: spring-boot
+  application:
+    name: gateway-service
+  output:
+    ansi:
+      enabled: always
+---
+spring:
+  profiles:
+    active: spring-cloud
+    output:
+      ansi:
+        enabled: always
 #  security:
 #    oauth2:
 #      client:
@@ -58,11 +85,17 @@ spring:
           predicates:
             - Path=/hotels/**
         - id: web
-          uri: http://${WEB_HOST}/
+          uri: http://${WEB_HOST}
           predicates:
-            - Path=/**
-  
-
+            - Path=/ibcs-manager/**
+          filters:
+            - RewritePath=/ibcs-manager/(?<segment>.*), /$\{segment}
+      discovery:
+        locator:
+          enabled: false
+    service-registry:
+      auto-registration:
+        enabled: false
 ---
 spring:
   profiles:
@@ -88,6 +121,13 @@ spring:
 logging:
   level:
     root: INFO
-    org.springframework.cloud.gateway: DEBUG
+    org.springframework.web: INFO
+    org.springframework.security: INFO
+    org.springframework.security.oauth2: INFO
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.http.server.reactive: DEBUG
     reactor.netty.http.client: DEBUG
-    org.springframework.jdbc: 'DEBUG'
+    reactor.ipc.netty: DEBUG
+    reactor.netty: DEBUG
+    org.springframework.jdbc: DEBUG
+#    org.springframework.boot.autoconfigure: DEBUG

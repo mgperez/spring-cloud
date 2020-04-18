@@ -6,7 +6,14 @@ https://www.youtube.com/watch?v=Aty83SQD8O4
 
 
 
-https://www.javainuse.com/spring/cloud-gateway
+- [Spring Cloud Tutorial - Spring Cloud Gateway Hello World Example](https://www.javainuse.com/spring/cloud-gateway)
+- [Spring Cloud Tutorial - Spring Cloud Gateway Filters Example](https://www.javainuse.com/spring/cloud-filter)
+
+
+
+
+
+
 
 https://github.com/TechPrimers/spring-cloud-eureka-and-hystrix-example
 
@@ -70,9 +77,11 @@ https://howtodoinjava.com/spring-cloud/spring-cloud-api-gateway-zuul/
 
 
 
-Spring Cloud Gateway Tutorial
+- [Spring Cloud Gateway Tutorial](https://medium.com/@niral22/spring-cloud-gateway-tutorial-5311ddd59816)
 
-https://medium.com/@niral22/spring-cloud-gateway-tutorial-5311ddd59816
+SCGWGlobalFilter
+
+
 
 https://www.baeldung.com/spring-cloud-custom-gateway-filters
 
@@ -94,21 +103,19 @@ Implementing an On-Premises Identity Management Solution?
 
 Okta (identity management) -- cloud identity provider
 
-https://developer.okta.com/blog/2020/01/08/secure-legacy-spring-cloud-gateway
-
-https://morioh.com/p/0f35d4bf423b
-
 You can use OAuth 2.0 and OIDC (OpenID Connect) without a cloud identity provider by building your own server or by using an open-source implementation. 
 
+https://developer.okta.com/blog/2020/01/08/secure-legacy-spring-cloud-gateway
 
-
-https://www.keycloak.org/ (Open Source Identity and Access Management)
-
-
+https://developer.okta.com/blog/2019/08/28/reactive-microservices-spring-cloud-gateway
 
 Make Your Gateway an OAuth 2.0 Resource Server
 
 https://morioh.com/p/0f35d4bf423b
+
+
+
+https://www.keycloak.org/ (Open Source Identity and Access Management)
 
 
 
@@ -174,11 +181,33 @@ https://www.graalvm.org/docs/reference-manual/native-image/#graalvm-native-image
 
 https://www.graalvm.org/docs/reference-manual/install-components/
 
+
+
+### HowTo: Set an Environment Variable in Mac OS X - Terminal Only
+
+http://www.dowdandassociates.com/blog/content/howto-set-an-environment-variable-in-mac-os-x-terminal-only/
+
+https://www.cyberciti.biz/faq/change-default-shell-to-bash-on-macos-catalina/
+
+https://support.apple.com/en-us/HT208050
+
+
+
 ~/.bash_profile
+
+https://blog.softwaremill.com/graalvm-installation-and-setup-on-macos-294dd1d23ca2
+
+/usr/libexec/java_home -V
+
+/usr/libexec/java_home -v 1.8
+
+
 
 how to secure it
 
 https://developer.okta.com/blog/2019/09/30/java-quarkus-oidc
+
+https://dzone.com/articles/build-a-java-rest-api-with-quarkus
 
 
 

@@ -1,3 +1,18 @@
+# This Dockerfile is used in order to build a container that runs the Quarkus application in JVM mode
+#
+# Before building the docker image run:
+#
+# mvn package
+#
+# Then, build the image with:
+#
+# docker build -f src/main/docker/Dockerfile.jvm -t mgperez/gateway-jvm .
+#
+# Then run the container using:
+#
+# docker run -i --rm -p 8888:8888 mgperez/gateway-jvm
+#
+###
 FROM mgperez/alpine-java:base
 MAINTAINER mgperez
 RUN apk --no-cache --update add busybox-suid bash curl unzip sudo openssh-client shadow wget

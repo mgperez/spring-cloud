@@ -18,7 +18,7 @@ public class PassengersTiming extends PanacheEntity {
         this.yValue = yValue;
     }
     
-    public static Throughput findByX(String xLabel){
+    public static PassengersTiming findByX(String xLabel){
         return find("xLabel", xLabel).firstResult();
     }
     

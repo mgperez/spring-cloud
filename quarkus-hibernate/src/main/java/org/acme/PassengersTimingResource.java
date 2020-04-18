@@ -18,7 +18,7 @@ import org.jboss.logging.Logger;
 @Path("/summary/graph")
 public class PassengersTimingResource {
     
-    private static final Logger LOGGER = Logger.getLogger(PeakResource.class);
+    private static final Logger LOGGER = Logger.getLogger(PassengersTimingResource.class);
 
 /*     @POST
     @Transactional

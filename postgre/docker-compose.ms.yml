@@ -5,10 +5,10 @@ services:
     summary-mock:
         restart: unless-stopped
         container_name: summary-mock
-        image: mgperez/summary-mock:jvm
-        build:
-            context: ../quarkus-hibernate
-            dockerfile: src/main/docker/Dockerfile.jvm
+        image: quarkus/summary-service-native
+#        build:
+#            context: ../quarkus-hibernate
+#            dockerfile: src/main/docker/Dockerfile.jvm
         expose:
             - 8080
         ports:

@@ -1,4 +1,4 @@
-package org.mgperez;
+package org.mgperez.summary.graph;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import lombok.Data;

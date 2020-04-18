@@ -1,4 +1,4 @@
-package pl.piomin.services.organization.model;
+package org.garpesa.services.organization.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

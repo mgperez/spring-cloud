@@ -124,8 +124,17 @@ Then use the following command to build the native image and run it:
 [For more info](https://quarkus.io/guides/building-native-image#creating-a-container)
 
 ```
-# Maven build to produce an executable from inside a container:
+# Running
+% mvn compile quarkus:dev -DPGHOST=localhost
+
+# Maven create a native executable:
 ./mvnw clean package -Pnative -DskipTests
+% ls target/*-runner
+# Running the native executable
+% ./target/code-with-quarkus-1.0.0-SNAPSHOT-runner -DPGHOST=localhost
+
+# Maven build to produce an executable from inside a container:
+mvn clean package -Pnative -Dquarkus.native.container-build=true
 ```
 
 Then, if you didn’t delete the generated native executable, you can build the docker image with:
@@ -186,3 +195,10 @@ cat your_dump.sql | docker exec -i {your-db-container} psql -U {user} -d {databa
 cat dump_18-03-2020_19_36_52.sql | docker exec -i database psql -U sarah -d statistics
 ```
 
+Revisar lombok, panache, quarks
+
+http://www.adam-bien.com/roller/abien/entry/code_shrinking_with_quarkus_and
+
+https://in.relation.to/2019/11/19/hibernate-orm-with-panache-in-quarkus/
+
+https://quarkus.io/guides/getting-started

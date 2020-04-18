@@ -1,24 +1,14 @@
-package org.mgperez;
+package org.mgperez.summary.graph;
 
 import lombok.Data;
 
 import java.util.List;
 
-
+@Data
 public class DataFront {
-    public List<Float> getData() {
-        return data;
-    }
-
-    public void setData(List<Float> data) {
-        this.data = data;
-    }
-
     private List<Float> data;
 
-    public DataFront() {
-
-    }
+    public DataFront() {}
     public DataFront(List<Float> data) {
         this.data = data;
     }

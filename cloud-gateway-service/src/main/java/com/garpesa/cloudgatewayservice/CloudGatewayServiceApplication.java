@@ -1,12 +1,15 @@
 package com.garpesa.cloudgatewayservice;
 
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.web.server.SecurityWebFilterChain;
 
+import lombok.extern.log4j.Log4j2;
 
 /*
 import org.springframework.security.config.web.server.ServerHttpSecurity;
@@ -20,6 +23,7 @@ import org.springframework.security.web.server.header.XFrameOptionsServerHttpHea
  * https://javarubberduck.com/java/cors-gateway/
  * https://github.com/eugenp/tutorials/blob/master/spring-5-reactive/src/main/java/com/baeldung/reactive/cors/webfilter/CorsWebFilterApplication.java
  */
+@Log4j2
 @SpringBootApplication
 public class CloudGatewayServiceApplication {
 

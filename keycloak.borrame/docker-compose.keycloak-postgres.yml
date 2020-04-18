@@ -1,0 +1,55 @@
+version: '2.3'
+# https://github.com/keycloak/keycloak-containers/tree/master/docker-compose-examples
+
+networks:
+  lb:
+  db:
+
+services:
+  postgres:
+      image: postgres
+      restart: unless-stopped #Container will automatically restart on stop when it crashes but not if stopped
+      container_name: postgres
+      volumes:
+        - ./data/postgres:/var/lib/postgresql/data:z #Share the directory from the host to the container with RW mode to store database's data
+      environment:
+        POSTGRES_DB: keycloak
+        POSTGRES_USER: keycloak
+        POSTGRES_PASSWORD: password
+      ports: ['5432:5432'] # the HTTP endpoint
+      healthcheck:
+        test: ["CMD-SHELL", "pg_isready -U postgres"]
+        interval: 10s
+        timeout: 5s
+        retries: 5
+  
+  #######################################
+  # Keycloak: The IAM
+  #######################################
+  keycloak:
+      image: quay.io/keycloak/keycloak:latest
+      container_name: keycloak
+      restart: unless-stopped
+      environment:        
+        DB_VENDOR: POSTGRES
+        DB_ADDR: postgres
+        DB_DATABASE: keycloak
+        DB_USER: keycloak
+        DB_SCHEMA: public
+        DB_PASSWORD: password
+        KEYCLOAK_LOGLEVEL: DEBUG
+        KEYCLOAK_USER: admin
+        KEYCLOAK_PASSWORD: Pa55w0rd
+        # Uncomment the line below if you want to specify JDBC parameters. The parameter below is just an example, and it shouldn't be used in production without knowledge. It is highly recommended that you read the PostgreSQL JDBC driver documentation in order to use it.
+        #JDBC_PARAMS: "ssl=true"
+      command: ["-b", "0.0.0.0","-Dkeycloak.profile.feature.upload_scripts=enabled"]
+      healthcheck:
+        test: ["CMD", "curl", "-f", "http://localhost:8080/auth/"]
+        interval: 5s
+        timeout: 2s
+        retries: 15
+      ports:
+        - 9090:8080
+      depends_on:
+        postgres:
+          condition: service_healthy
